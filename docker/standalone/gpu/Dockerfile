@@ -32,10 +32,7 @@ ENV CLONE_TAG=caffe-0.16
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/bullapse/caffe.git . && \
     pip install --upgrade pip && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    git clone https://github.com/NVIDIA/nccl.git && cd nccl && make -j install && cd .. && rm -rf nccl && \
-    mkdir build && cd build && \
-    cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 .. && \
-    make -j"$(nproc)"
+    git clone https://github.com/NVIDIA/nccl.git && cd nccl && make -j install && cd .. && rm -rf nccl
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
