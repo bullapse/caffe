@@ -27,7 +27,7 @@ ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
-ENV CLONE_TAG=0.16
+ENV CLONE_TAG=caffe-0.16
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/bullapse/caffe.git . && \
     pip install --upgrade pip && \
