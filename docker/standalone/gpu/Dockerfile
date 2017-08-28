@@ -26,13 +26,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
+
+
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 ENV CLONE_TAG=caffe-0.16
 
 RUN git clone -b ${CLONE_TAG} https://github.com/bullapse/caffe.git . && \
     pip install --upgrade pip && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    git clone https://github.com/NVIDIA/nccl.git && cd nccl && make -j install && cd .. && rm -rf nccl
+
+ARG NCCL_DEB
+RUN if [ $NCCL_DEB" != "" ]; then dpkg -i $NCCL_DEB
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
