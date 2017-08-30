@@ -33,10 +33,12 @@ ENV CLONE_TAG=caffe-0.16
 
 RUN git clone -b ${CLONE_TAG} https://github.com/bullapse/caffe.git . && \
     pip install --upgrade pip && \
-    for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
+    for req in $(cat python/requirements.txt) pydot; do pip install $req; done
 
-ARG NCCL_DEB
-RUN if [ $NCCL_DEB" != "" ]; then dpkg -i $NCCL_DEB
+# Requires you to have a filename "Default" in the build directory
+ARG NCCL_DEB="Default"
+COPY $NCCL_DEB $CAFFE_ROOT
+RUN if [ "$NCCL_DEB" == "Default" ]; then echo "installing "; dpkg -i $NCCL_DEB; fi
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
