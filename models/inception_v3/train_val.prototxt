@@ -13,7 +13,7 @@ layer {
   }
   transform_param {
     crop_size: 299
-    mean_file: "/data/imagenetb_mean.binaryproto"
+    mean_file: "/data/imagenet_mean.binaryproto"
     mirror: true
   }
   include: { phase: TRAIN }
