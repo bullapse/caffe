@@ -30,7 +30,7 @@ layer {
   }
   transform_param {
     mean_file: "/data/imagenet_mean.binaryproto"
-    crop_size: 299
+    crop_size: 256
     mirror: false
   }
   include: { phase: TEST }
