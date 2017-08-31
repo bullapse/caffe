@@ -12,7 +12,7 @@ layer {
 #    batch_size: 256	# DGX1
   }
   transform_param {
-    crop_size: 256
+    crop_size: 224
     mean_file: "/data/imagenet_mean.binaryproto"
     mirror: true
   }
@@ -30,7 +30,7 @@ layer {
   }
   transform_param {
     mean_file: "/data/imagenet_mean.binaryproto"
-    crop_size: 256
+    crop_size: 224
     mirror: false
   }
   include: { phase: TEST }
