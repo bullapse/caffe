@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04
+FROM dell-cuda8-sbull:devel-gpu-sbull
 MAINTAINER caffe-maint@googlegroups.com
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -26,19 +26,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
-
-
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 ENV CLONE_TAG=caffe-0.16
 
 RUN git clone -b ${CLONE_TAG} https://github.com/bullapse/caffe.git . && \
     pip install --upgrade pip && \
-    for req in $(cat python/requirements.txt) pydot; do pip install $req; done
-
-# Requires you to have a filename "Default" in the build directory
-ARG NCCL_DEB="Default"
-COPY $NCCL_DEB $CAFFE_ROOT
-RUN if [ "$NCCL_DEB" == "Default" ]; then echo "installing "; dpkg -i $NCCL_DEB; fi
+    for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
+    mkdir build && cd build && \
+    cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 .. && \
+    make -j"$(nproc)" && \
+    echo "Done"
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
