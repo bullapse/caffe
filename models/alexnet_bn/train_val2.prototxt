@@ -14,11 +14,11 @@ layer {
   transform_param {
     mean_file: "/data/imagenet_mean.binaryproto"
     mirror: true
-    crop_size: 227
+    crop_size: 224
     scale: 0.00390625
   }
   data_param {
-    source: "/ilsvrc12_train_lmdb"
+    source: "/data/ilsvrc12_train_lmdb"
     batch_size: 512
     backend: LMDB
     cache:   true
@@ -34,7 +34,7 @@ layer {
   transform_param {
     mean_file: "/data/imagenet_mean.binaryproto"
     mirror: false
-    crop_size: 227
+    crop_size: 224
     scale: 0.00390625
   }
   data_param {
