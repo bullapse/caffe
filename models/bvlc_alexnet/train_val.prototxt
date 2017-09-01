@@ -12,7 +12,7 @@ layer {
   }
   data_param {
 #    source: "examples/imagenet/ilsvrc12_train_lmdb"
-    batch_size: 1024
+    batch_size: 512
     source: "/data/ilsvrc12_train_lmdb"
     cache: true
     shuffle: true
