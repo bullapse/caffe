@@ -1,13 +1,13 @@
 net: "models/bvlc_alexnet/train_val.prototxt"
 
 test_iter: 1562            #196  #1562 = 50000/32
-test_interval:  625        #1250   
+test_interval:  625        #1250
 test_initialization: false
 
 display:  100
 
-max_iter: 125000 
-max_iter:  31300 	# 100 epochs 
+#max_iter: 125000
+max_iter:  31300 	# 100 epochs
 
 #base_lr:  2    #0.02    # B=1024
 base_lr:   10            # B=4096
@@ -35,9 +35,9 @@ random_seed: 1
 
 # batch 64  --> epoch = 20,000
 # batch 96  --> epoch = 15,000
-# batch 128 --> epoch = 10,000 
-# batch 256 --> epoch =  5,000  
-# batch 512 --> epoch =  2,500  
+# batch 128 --> epoch = 10,000
+# batch 256 --> epoch =  5,000
+# batch 512 --> epoch =  2,500
 # batch 1024--> epoch =  1,250
 # batch 1024--> epoch =    625
 # batch 4096--> epoch =    312
