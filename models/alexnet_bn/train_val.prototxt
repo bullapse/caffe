@@ -10,17 +10,17 @@ layer {
   top: "data"
   top: "label"
   transform_param {
-    mean_file: "data/ilsvrc12/imagenet_mean.binaryproto"
+    mean_file: "/data/imagenet_mean.binaryproto"
     mirror: true
-    crop_size: 227
+    crop_size: 224
     scale: 0.00390625
   }
   data_param {
-    source: "examples/imagenet/ilsvrc12_train_lmdb"
-    batch_size: 512
+    source: "/data/ilsvrc12_train_lmdb"
+    batch_size: 512 # TODO Change Batch Sizes
     backend: LMDB
     cache:   true
-    shuffle: true 
+    shuffle: true
   }
   include { phase: TRAIN }
 }
@@ -30,14 +30,14 @@ layer {
   top: "data"
   top: "label"
   transform_param {
-    mean_file: "data/ilsvrc12/imagenet_mean.binaryproto"
+    mean_file: "/data/imagenet_mean.binaryproto"
     mirror: false
-    crop_size: 227
+    crop_size: 224
     scale: 0.00390625
   }
   data_param {
-    source: "examples/imagenet/ilsvrc12_val_lmdb"
-    batch_size: 256         
+    source: "/data/ilsvrc12_val_lmdb"
+    batch_size: 256
     backend: LMDB
   }
   include { phase: TEST }
