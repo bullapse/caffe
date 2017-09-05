@@ -9,7 +9,7 @@ layer {
 #    source: "examples/imagenet/ilsvrc12_train_lmdb"
     source: "/data/ilsvrc12_train_lmdb"
     backend: LMDB
-    batch_size: 100 #32
+    batch_size: 105 #32
     cache:   true
     shuffle: true
   }
