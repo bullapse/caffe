@@ -1,4 +1,4 @@
-FROM dell-cuda8-sbull:devel-gpu-sbull
+FROM dell-cuda8:devel-gpu-nccl
 MAINTAINER caffe-maint@googlegroups.com
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -34,8 +34,7 @@ RUN git clone -b ${CLONE_TAG} https://github.com/bullapse/caffe.git . && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
     mkdir build && cd build && \
     cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 .. && \
-    make -j"$(nproc)" && \
-    echo "Done"
+    make -j"$(nproc)"
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH

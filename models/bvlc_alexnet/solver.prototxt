@@ -7,7 +7,7 @@ test_initialization: false
 display:  100
 
 #max_iter: 125000
-max_iter:  4000 	# Just for getting Image/Sec (benchmark)
+max_iter:  1000 	# Just for getting Image/Sec (benchmark)
 
 #base_lr:  2    #0.02    # B=1024
 base_lr:   10            # B=4096
