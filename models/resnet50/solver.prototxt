@@ -1,4 +1,4 @@
-net: "models/resnet50/train_val_2.prototxt"
+net: "models/resnet50/train_val.prototxt"
 
 test_iter: 1562         # 50000/32
 test_interval: 5000

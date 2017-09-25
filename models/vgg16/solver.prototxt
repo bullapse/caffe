@@ -1,4 +1,4 @@
-net: "models/vgg16/train_val_3.prototxt"
+net: "models/vgg16/train_val.prototxt"
 
 test_iter: 1563		# 50000/32
 test_interval: 20000
