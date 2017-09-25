@@ -25,7 +25,7 @@ layer {
   data_param {
     source: "/data/ilsvrc12_val_lmdb"
     backend: LMDB
-    batch_size: 32
+    batch_size: 64
   }
   transform_param {
     crop_size: 224
